@@ -24,9 +24,10 @@ class _GroceryListState extends State<GroceryList> {
   void _loadItems() async {
     final url = Uri.https(
         'personal-project-22b3f-default-rtdb.firebaseio.com', 'shopping-list.json');
-    final response = await http.get(url);
+try{
+  final response = await http.get(url);
 
-  if (response.statusCode >= 400) {
+if (response.statusCode >= 400) {
       setState(() {
         _error = 'Failed to fetch data. Please try again later.';
       });
@@ -57,7 +58,20 @@ class _GroceryListState extends State<GroceryList> {
       _groceryItems = loadedItems;
       _isLoading = false;
     });
-  }
+}
+catch(error){
+   setState(() {
+        _error = 'Something went wrong! Please try again later.';
+      });
+    }
+
+}
+    
+
+
+
+  
+  
 
 
 
